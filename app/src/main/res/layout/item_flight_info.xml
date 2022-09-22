@@ -1,9 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_5dp"
+        tools:background="@color/porcelain"
+        tools:paddingHorizontal="@dimen/padding_16dp">
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/width_0dp"
+            android:layout_height="wrap_content"
+            app:cardElevation="6dp"
+            app:cardMaxElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/padding_16dp"
+                android:paddingVertical="@dimen/padding_14dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/width_25dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_thy" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Medium.13.Nandor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/padding_8dp"
+                        tools:text="Türk Hava Yolları" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/margin_8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Medium.14.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="SAW" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_6dp"
+                            android:layout_marginHorizontal="@dimen/margin_5dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/ic_arrow_next" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Medium.14.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="AMS" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Bold.14.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="12:30" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="@dimen/margin_5dp"
+                            android:adjustViewBounds="true"
+                            android:paddingVertical="@dimen/padding_1dp"
+                            android:src="@drawable/ic_arrow_right" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Medium.14.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="15:20" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|bottom"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Bold.18.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1449" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Bold.12.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="," />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Bold.12.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="99" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Bold.12.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text=" TL" />
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/margin_5dp"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="@dimen/height_12dp"
+                                android:layout_marginHorizontal="@dimen/margin_5dp"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/ic_arrow_next"
+                                app:tint="@color/emerald" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_1dp"
+                    android:layout_marginVertical="@dimen/margin_3dp"
+                    android:background="@color/iron" />
+
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/CabirApp.IconButton"
+                        android:layout_width="@dimen/width_36dp"
+                        android:layout_height="@dimen/height_26dp"
+                        app:icon="@drawable/ic_arrow_down" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/Medium.16.Emerald"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/margin_10dp"
+                        tools:text="Direkt Uçuş" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/height_8dp"
+                        android:layout_marginStart="@dimen/margin_5dp"
+                        android:layout_marginEnd="@dimen/margin_16dp"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_dot" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_12dp"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_luggage" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            style="@style/Medium.12.Nandor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/padding_8dp"
+                            tools:text="20kg/kişi" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

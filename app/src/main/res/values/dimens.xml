@@ -1,19 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="height_0dp">0dp</dimen>
-
-    <dimen name="height_60dp">60dp</dimen>
+    <dimen name="height_1dp">1dp</dimen>
+    <dimen name="height_6dp">6dp</dimen>
+    <dimen name="height_8dp">8dp</dimen>
+    <dimen name="height_10dp">10dp</dimen>
+    <dimen name="height_12dp">12dp</dimen>
+    <dimen name="height_16dp">16dp</dimen>
+    <dimen name="height_26dp">26dp</dimen>
+    <dimen name="height_32dp">32dp</dimen>
+    <dimen name="height_40dp">40dp</dimen>
     <dimen name="height_43dp">43dp</dimen>
+    <dimen name="height_60dp">60dp</dimen>
 
     <dimen name="width_0dp">0dp</dimen>
+    <dimen name="width_1dp">1dp</dimen>
+    <dimen name="width_8dp">8dp</dimen>
     <dimen name="width_10dp">10dp</dimen>
+    <dimen name="width_25dp">25dp</dimen>
+    <dimen name="width_36dp">36dp</dimen>
+    <dimen name="width_45dp">45dp</dimen>
     <dimen name="width_47dp">47dp</dimen>
 
-
     <dimen name="padding_0dp">0dp</dimen>
+    <dimen name="padding_1dp">1dp</dimen>
+    <dimen name="padding_2dp">2dp</dimen>
+    <dimen name="padding_3dp">3dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
     <dimen name="padding_14dp">14dp</dimen>
     <dimen name="padding_16dp">16dp</dimen>
 
+    <dimen name="margin_3dp">3dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
 </resources>
