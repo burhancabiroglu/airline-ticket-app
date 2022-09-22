@@ -1,4 +1,4 @@
-package com.cabir.airlineticketapp.util
+package com.cabir.airlineticketapp.util.lifecycle
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LifecycleOwner
