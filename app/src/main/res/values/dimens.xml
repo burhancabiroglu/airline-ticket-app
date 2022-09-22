@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_0dp">0dp</dimen>
+
+    <dimen name="height_60dp">60dp</dimen>
+    <dimen name="height_43dp">43dp</dimen>
+
+    <dimen name="width_0dp">0dp</dimen>
+    <dimen name="width_10dp">10dp</dimen>
+    <dimen name="width_47dp">47dp</dimen>
+
+
+    <dimen name="padding_0dp">0dp</dimen>
+    <dimen name="padding_14dp">14dp</dimen>
+    <dimen name="padding_16dp">16dp</dimen>
+
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+</resources>

@@ -10,4 +10,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class FlightsListFragment: BaseFragment<FlightsListViewModel,FragmentFlightsListBinding>() {
     override val viewModel: FlightsListViewModel by viewModels()
     override val layoutRes: Int  = R.layout.fragment_flights_list
+
+    override fun initUI() {
+
+    }
 }

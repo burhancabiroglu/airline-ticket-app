@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 
 abstract class BaseFragment<VM: BaseViewModel, DB : ViewDataBinding>: Fragment() {
@@ -22,6 +23,7 @@ abstract class BaseFragment<VM: BaseViewModel, DB : ViewDataBinding>: Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,layoutRes,container,false)
+        binding.setVariable(BR.viewModel, viewModel)
         binding.lifecycleOwner = this
         return binding.root
     }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CabirApp" />
+
+    <style name="CabirApp.Button">
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">10dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="backgroundTint">@color/prussian_blue</item>
+        <item name="iconTint">@color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:minWidth">@dimen/width_47dp</item>
+        <item name="android:minHeight">@dimen/height_43dp</item>
+    </style>
+
+    <style name="CabirApp.IconButton">
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="backgroundTint">@color/porcelain</item>
+        <item name="iconTint">@color/nandor</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:minWidth">@dimen/width_47dp</item>
+        <item name="android:minHeight">@dimen/height_43dp</item>
+    </style>
+
+    <style name="CabirApp.IconButton.Azure">
+        <item name="backgroundTint">@color/azure_radiance</item>
+        <item name="iconTint">@color/white</item>
+    </style>
+
+    <style name="CabirApp.IconButton.Elevated">
+        <item name="backgroundTint">@color/white</item>
+        <item name="iconTint">@color/emerald</item>
+        <item name="iconSize">32dp</item>
+    </style>
+
+    <style name="CabirApp.IconButton.Elevated.Square">
+        <item name="backgroundTint">@color/white</item>
+        <item name="iconTint">@color/emerald</item>
+        <item name="iconSize">32dp</item>
+        <item name="cornerRadius">0dp</item>
+    </style>
+</resources>

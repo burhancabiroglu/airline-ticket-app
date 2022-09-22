@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Airline Ticket App</string>
+    <string name="filter">Filtrele</string>
+    <string name="sort">Sırala</string>
 </resources>
