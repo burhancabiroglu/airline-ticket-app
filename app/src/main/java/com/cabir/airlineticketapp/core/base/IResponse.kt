@@ -21,7 +21,6 @@ data class ILoading(
 
 @Parcelize
 data class ISuccess<out T> (
-    private val _message: String = "",
     private val _data: @RawValue T?,
     private val _code: Int = 0
-) : IResponse<T>(message = _message,code = _code, data = _data), Parcelable
+) : IResponse<T>(message = "",code = _code, data = _data), Parcelable

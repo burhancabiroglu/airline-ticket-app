@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PriceBreakdown(
-    val base: Int,
-    val tax: Int,
+    val base: Double,
+    val tax: Double,
     val service: Double,
     @SerializedName("reissue_service")
     val reissueService: Number,
@@ -19,6 +19,6 @@ data class PriceBreakdown(
     @SerializedName("internal_assurance")
     val internalAssurance: Int,
     @SerializedName("extra_fee")
-    val extraFee: Int,
+    val extraFee: Double,
     val penalty: Int
 ): Parcelable

@@ -18,6 +18,7 @@ ext {
     okhttp_version = "4.10.0"
     fragment_version = "2.5.2"
     glide_version = "4.13.2"
+    mockfit_version = "1.1.0"
 
     espresso_version = "3.4.0"
     junit_version = "4.13.2"

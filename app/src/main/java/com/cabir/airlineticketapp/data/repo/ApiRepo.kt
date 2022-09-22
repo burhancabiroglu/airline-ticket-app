@@ -1,11 +1,12 @@
 package com.cabir.airlineticketapp.data.repo
 
-import com.cabir.airlineticketapp.data.remote.RemoteDataSource
-import com.cabir.airlineticketapp.util.network.NetworkUtil
+import com.cabir.airlineticketapp.data.service.ApiService
+import com.cabir.airlineticketapp.util.network.NetworkHandler
+import javax.inject.Inject
 
 
-class ApiRepo(
-    private val remoteDataSource: RemoteDataSource,
+class ApiRepo @Inject constructor(
+    private val apiService: ApiService,
 ) {
-    fun search() = NetworkUtil.performOperation { remoteDataSource.search() }
+    suspend fun search() = NetworkHandler.execute ({apiService.search()})
 }
