@@ -93,7 +93,6 @@
 
 
                     <com.google.android.material.button.MaterialButton
-                        android:elevation="10dp"
                         style="@style/CabirApp.IconButton.Elevated.Square"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
