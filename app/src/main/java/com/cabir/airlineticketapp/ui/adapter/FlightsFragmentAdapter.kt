@@ -16,7 +16,7 @@ class FlightsFragmentAdapter(
 
     override fun createFragment(position: Int): Fragment = FlightTabItem(list.elementAt(position))
 
-    class FlightTabItem(private val element: Any) : Fragment(R.layout.layout_flight_tab_item) {
+    class FlightTabItem(private val element: Any) : Fragment(R.layout.fragment_flight_tab_item) {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
             val amountTextView: TextView = view.findViewById(R.id.amountTextView)
