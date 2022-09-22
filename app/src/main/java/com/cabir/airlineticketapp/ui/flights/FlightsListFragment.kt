@@ -12,6 +12,6 @@ class FlightsListFragment: BaseFragment<FlightsListViewModel,FragmentFlightsList
     override val layoutRes: Int  = R.layout.fragment_flights_list
 
     override fun initUI() {
-
+        // binding.flightsTabLayout()
     }
 }
