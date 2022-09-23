@@ -13,15 +13,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_5dp"
+        android:padding="@dimen/padding_8dp"
+        android:clipToPadding="false"
         tools:background="@color/porcelain"
         tools:paddingHorizontal="@dimen/padding_16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="@dimen/width_0dp"
             android:layout_height="wrap_content"
-            app:cardElevation="6dp"
-            app:cardMaxElevation="20dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="@dimen/height_10dp"
+            app:cardMaxElevation="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +43,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        app:imageUrl="@{item.operatingAirline.image}"
+                        app:imageUrl="@{item.marketingAirline.image}"
                         android:layout_width="22dp"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
@@ -54,12 +56,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_8dp"
-                        android:text="@{item.operatingAirline.name}"
+                        android:text="@{item.marketingAirline.name}"
                         tools:text="Türk Hava Yolları" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginVertical="@dimen/margin_8dp"
+                    android:layout_marginTop="@dimen/margin_12dp"
+                    android:layout_marginBottom="@dimen/margin_8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -106,7 +109,7 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/Bold.16.Nandor"
+                            style="@style/Bold.15.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{item.departureTime}"
@@ -115,13 +118,12 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginHorizontal="@dimen/margin_5dp"
                             android:adjustViewBounds="true"
                             android:paddingVertical="@dimen/padding_3dp"
                             android:src="@drawable/ic_arrow_right" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/Medium.16.Nandor"
+                            style="@style/Medium.15.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{item.arrivalTime}"
@@ -141,6 +143,7 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/priceMajorTextView"
                             style="@style/Bold.18.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -150,25 +153,27 @@
                             style="@style/Bold.12.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="," />
+                            android:text="," />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/priceMinorTextView"
                             style="@style/Bold.12.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="99" />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/currencyTextView"
                             style="@style/Bold.12.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{` `+item.currency}"
                             tools:text=" TL" />
-
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/margin_5dp"
+                            android:layout_marginStart="@dimen/margin_3dp"
                             android:gravity="center">
 
                             <ImageView
@@ -206,11 +211,12 @@
                         app:icon="@drawable/ic_arrow_down" />
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@{item.direct?@string/directFlight: @string/nonDirectFlight}"
                         style="@style/Medium.16.Emerald"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/margin_10dp"
-                        tools:text="Direkt Uçuş" />
+                        tools:text="@string/directFlight" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -237,6 +243,7 @@
                             android:src="@drawable/ic_luggage" />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/luggageTextView"
                             style="@style/Medium.12.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

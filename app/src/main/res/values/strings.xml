@@ -6,4 +6,7 @@
     <string name="two_way">Gidiş Dönüş</string>
     <string name="prev_day">Önceki Gün</string>
     <string name="next_day">Sonraki Gün</string>
+    <string name="directFlight">Direkt Uçuş</string>
+    <string name="nonDirectFlight">Aktarmalı</string>
+
 </resources>

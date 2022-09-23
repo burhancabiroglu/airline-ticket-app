@@ -14,5 +14,7 @@ data class Departure(
     @SerializedName("average_price_breakdown")
     val averagePriceBreakdown: PriceBreakdown,
     val infos: Info,
-    val segments: ArrayList<Segment>
+    val segments: ArrayList<Segment>,
+    @SerializedName("different_airline_count")
+    val differentAirlineCount: Int
 ) : Parcelable

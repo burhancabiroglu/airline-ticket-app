@@ -46,6 +46,8 @@ class FlightsListViewModel @Inject constructor(
                         _priceHistory.value = it.priceHistory
                         _departureDate.value = it.searchParameters.departureDate
                         val list = it.flights.departure.map { flight ->
+                            val baggage = flight.infos.baggageInfo.firstBaggageCollection!=null
+                            val allowance = if(baggage) flight.infos.baggageInfo.firstBaggageCollection?.get(0)?.allowance else 0
                             FlightItem(
                                 flight.segments[0].origin,
                                 flight.segments[0].destination,
@@ -54,6 +56,11 @@ class FlightsListViewModel @Inject constructor(
                                 flight.segments[0].arrivalDatetime.time,
                                 marketingAirline = it.airlines.find { it.code == flight.segments[0].marketingAirline }!!,
                                 operatingAirline = it.airlines.find { it.code == flight.segments[0].operatingAirline }!!,
+                                flight.priceBreakdown.displayedCurrency,
+                                baggage = flight.infos.baggageInfo.firstBaggageCollection!=null,
+                                baggageAllowance = allowance?:0,
+                                isDirect = flight.differentAirlineCount==1
+
                             )
                         }
                         adapter.updateData(list)

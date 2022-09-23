@@ -11,4 +11,8 @@ class FlightItem(
     val arrivalTime: String,
     val marketingAirline: Airline,
     val operatingAirline: Airline,
+    val currency: String,
+    val baggage: Boolean = false,
+    val baggageAllowance: Int = 0,
+    val isDirect: Boolean = true
 )

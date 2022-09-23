@@ -17,6 +17,14 @@ class FlightsRecyclerViewAdapter(private var list: Collection<FlightItem>) :
             item.marketingAirline.name = item.marketingAirline.name.parseUnicode()
             item.operatingAirline.name = item.operatingAirline.name.parseUnicode()
             binding.item = item
+            val splitArr =  item.price.split(",")
+            if (splitArr.isNotEmpty()) {
+                binding.priceMajorTextView.text = item.price.split(",")[0]
+                binding.priceMinorTextView.text = item.price.split(",")[1]
+            }
+            else binding.priceMajorTextView.text= item.price
+            binding.luggageTextView.text = if(item.baggage) item.baggageAllowance.toString()+" kg/kişi" else "El Bagajı"
+
         }
     }
 

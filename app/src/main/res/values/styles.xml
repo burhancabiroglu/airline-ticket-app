@@ -29,6 +29,10 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="Medium.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="Medium.16">
         <item name="android:textSize">16sp</item>
     </style>
@@ -47,6 +51,10 @@
 
     <style name="Bold.14">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Bold.15">
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="Bold.16">
@@ -77,6 +85,10 @@
         <item name="android:textColor">@color/nandor</item>
     </style>
 
+    <style name="Medium.15.Nandor">
+        <item name="android:textColor">@color/nandor</item>
+    </style>
+
     <style name="Medium.16.Nandor">
         <item name="android:textColor">@color/nandor</item>
     </style>
@@ -94,6 +106,10 @@
     </style>
 
     <style name="Bold.14.Nandor">
+        <item name="android:textColor">@color/nandor</item>
+    </style>
+
+    <style name="Bold.15.Nandor">
         <item name="android:textColor">@color/nandor</item>
     </style>
 
