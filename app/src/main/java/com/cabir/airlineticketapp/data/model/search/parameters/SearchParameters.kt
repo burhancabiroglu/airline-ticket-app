@@ -16,5 +16,7 @@ data class SearchParameters(
     @SerializedName("is_one_way")
     val isOneWay: Boolean,
     @SerializedName("flight_class")
-    val flightClass: String
+    val flightClass: String,
+    @SerializedName("departure_date")
+    val departureDate: String
 ): Parcelable

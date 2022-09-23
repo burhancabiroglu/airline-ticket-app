@@ -1,6 +1,6 @@
 package com.cabir.airlineticketapp.util.extension
 
-import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -23,4 +23,13 @@ fun String.parseUnicode(): String {
     if(startPoint!=null && endPoint!= null)
         cleanString = c.toString()+str.removeRange(startPoint!!, endPoint!!)
     return cleanString
+}
+
+fun String.formatDate(): String {
+    val locale = Locale.forLanguageTag("tr-TR")
+    val parser = SimpleDateFormat("yyyy-MM-dd", locale)
+    val formatter = SimpleDateFormat("dd MMM EE", locale)
+    val date = parser.parse(this)
+    date?.let { return formatter.format(it) }
+    return ""
 }

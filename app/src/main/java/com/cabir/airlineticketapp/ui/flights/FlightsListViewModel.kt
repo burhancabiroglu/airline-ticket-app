@@ -20,12 +20,14 @@ class FlightsListViewModel @Inject constructor(
     val destination = MutableLiveData<String>()
     val isOneWay = MutableLiveData<Boolean>()
     val passengerCount = MutableLiveData<Int>()
-
+    private val _departureDate = MutableLiveData<String>()
     private var _priceHistory = MutableLiveData<PriceHistory>()
     var priceHistory: PriceHistory?
         get() = _priceHistory.value
         set(value) { value?.let {  _priceHistory.value = it} }
 
+    val departureDate
+        get() = _departureDate.value.toString()
     fun getData() {
         viewModelScope.launch {
             when(val result = appRepo.search()) {
@@ -36,6 +38,7 @@ class FlightsListViewModel @Inject constructor(
                         isOneWay.value = it.searchParameters.isOneWay
                         passengerCount.value = it.searchParameters.passengerCount
                         _priceHistory.value = it.priceHistory
+                        _departureDate.value = it.searchParameters.departureDate
                         state.value = FlightsListVMState.OnDataReady()
                     }
                 }

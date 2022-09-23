@@ -7,6 +7,7 @@ import com.cabir.airlineticketapp.core.base.BaseFragment
 import com.cabir.airlineticketapp.core.base.VMState
 import com.cabir.airlineticketapp.databinding.FragmentFlightsListBinding
 import com.cabir.airlineticketapp.components.tabitem.FlightTabItem
+import com.cabir.airlineticketapp.util.extension.formatDate
 import com.cabir.airlineticketapp.util.extension.toNumberFormat
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +28,7 @@ class FlightsListFragment: BaseFragment<FlightsListViewModel,FragmentFlightsList
                 val ph = viewModel.priceHistory?.departure
                 context?.let {
                     FlightTabItem.create(it,vg,tl, Pair(getString(R.string.prev_day),ph?.previousDayPrice!!.toNumberFormat()))
-                    FlightTabItem.create(it,vg,tl, Pair("28 Haz Sal", ph.previousDayPrice.toNumberFormat()), true)
+                    FlightTabItem.create(it,vg,tl, Pair(viewModel.departureDate.formatDate(), ph.previousDayPrice.toNumberFormat()), true)
                     FlightTabItem.create(it,vg,tl, Pair(getString(R.string.next_day),ph.nextDayPrice.toNumberFormat()))
                 }
 
