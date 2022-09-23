@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
+    android:duplicateParentState="true"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/dayTextView"
-        android:layout_marginBottom="@dimen/margin_5dp"
-        style="@style/Medium.14.Nandor"
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Önceki Gün" />
+        android:layout_marginBottom="@dimen/margin_5dp">
 
-    <TextView
+        <ImageView
+            android:id="@+id/dateImageView"
+            android:visibility="gone"
+            android:layout_marginHorizontal="@dimen/margin_3dp"
+            android:src="@drawable/ic_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dayTextView"
+            style="@style/Medium.13.Nandor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Önceki Gün" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/amountTextView"
         style="@style/Bold.16.Nandor"
         android:layout_width="wrap_content"

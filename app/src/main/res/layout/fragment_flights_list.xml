@@ -63,6 +63,7 @@
                             android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:text="@{viewModel.origin}"
                                 style="@style/Bold.17.Nandor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -77,6 +78,7 @@
                                 android:contentDescription="@string/app_name" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:text="@{viewModel.destination}"
                                 style="@style/Bold.17.Nandor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -104,7 +106,8 @@
                                 style="@style/Medium.14.Nandor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/one_direction" />
+                                tools:text="@string/one_way"
+                                android:text="@{viewModel.isOneWay() ? @string/one_way : @string/two_way}"/>
 
                             <View
                                 android:layout_marginVertical="@dimen/margin_3dp"
@@ -123,6 +126,7 @@
                                 android:contentDescription="@string/app_name" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:text="@{viewModel.passengerCount.toString()}"
                                 style="@style/Medium.14.Nandor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -174,14 +178,8 @@
                         android:layout_height="match_parent"
                         app:tabIndicatorColor="@color/emerald"
                         app:tabSelectedTextColor="@color/emerald"
-                        app:tabTextColor="@color/emerald"
-                        app:tabMode="scrollable"
+                        app:tabTextColor="@color/nevada"
                         android:layout_weight="1" />
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/flightsViewPager"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/height_0dp"/>
 
                     <com.google.android.material.button.MaterialButton
                         style="@style/CabirApp.IconButton.Elevated.Square"

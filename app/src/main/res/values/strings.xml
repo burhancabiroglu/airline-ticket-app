@@ -2,5 +2,8 @@
     <string name="app_name">Airline Ticket App</string>
     <string name="filter">Filtrele</string>
     <string name="sort">Sırala</string>
-    <string name="one_direction">Tek Yön</string>
+    <string name="one_way">Tek Yön</string>
+    <string name="two_way">Gidiş Dönüş</string>
+    <string name="prev_day">Önceki Gün</string>
+    <string name="next_day">Sonraki Gün</string>
 </resources>

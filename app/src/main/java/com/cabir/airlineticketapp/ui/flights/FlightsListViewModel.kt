@@ -1,15 +1,12 @@
 package com.cabir.airlineticketapp.ui.flights
 
-import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.cabir.airlineticketapp.core.base.BaseViewModel
-import com.cabir.airlineticketapp.core.base.ILoading
 import com.cabir.airlineticketapp.core.base.ISuccess
-import com.cabir.airlineticketapp.data.model.flightsearch.SearchResponse
+import com.cabir.airlineticketapp.data.model.price.PriceHistory
 import com.cabir.airlineticketapp.data.repo.ApiRepo
-import com.cabir.airlineticketapp.ui.adapter.FlightsFragmentAdapter
+import com.cabir.airlineticketapp.util.extension.parseUnicode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,13 +16,30 @@ class FlightsListViewModel @Inject constructor(
     private val appRepo: ApiRepo
 ) : BaseViewModel() {
 
+    val origin = MutableLiveData<String>()
+    val destination = MutableLiveData<String>()
+    val isOneWay = MutableLiveData<Boolean>()
+    val passengerCount = MutableLiveData<Int>()
+
+    private var _priceHistory = MutableLiveData<PriceHistory>()
+    var priceHistory: PriceHistory?
+        get() = _priceHistory.value
+        set(value) { value?.let {  _priceHistory.value = it} }
+
     fun getData() {
-        Log.e("TAG", "getData: working ", )
         viewModelScope.launch {
             when(val result = appRepo.search()) {
-                is ISuccess -> Log.e("TAG",result.data.toString())
-                is ILoading -> Log.e("TAG","loading")
-                else -> Log.e("hiçbir şey çıkmadı", result.message.toString())
+                is ISuccess -> {
+                    result.data?.data?.let {
+                        origin.value = it.searchParameters.origin.cityName.parseUnicode()
+                        destination.value = it.searchParameters.destination.cityName.parseUnicode()
+                        isOneWay.value = it.searchParameters.isOneWay
+                        passengerCount.value = it.searchParameters.passengerCount
+                        _priceHistory.value = it.priceHistory
+                        state.value = FlightsListVMState.OnDataReady()
+                    }
+                }
+                else -> Unit
             }
         }
     }
