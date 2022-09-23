@@ -24,22 +24,14 @@ class FlightsListViewModel @Inject constructor(
     private val appRepo: ApiRepo
 ) : BaseViewModel() {
 
-    private val cachedResponse = MutableLiveData<FlightSearch>()
+    val cachedResponse = MutableLiveData<FlightSearch>()
     val origin = MutableLiveData<String>()
     val destination = MutableLiveData<String>()
     val isOneWay = MutableLiveData<Boolean>()
     val passengerCount = MutableLiveData<Int>()
-    private val _departureDate = MutableLiveData<String>()
-    private var _priceHistory = MutableLiveData<PriceHistory>()
+    val departureDate = MutableLiveData<String>()
+    val priceHistory = MutableLiveData<PriceHistory>()
     val adapter = FlightsRecyclerViewAdapter(arrayListOf())
-
-    var priceHistory: PriceHistory?
-        get() = _priceHistory.value
-        set(value) { value?.let {  _priceHistory.value = it} }
-
-    val departureDate
-        get() = _departureDate.value.toString()
-
     val tabs = ArrayList<FlightTabItem>()
 
     fun getData() {
@@ -63,9 +55,9 @@ class FlightsListViewModel @Inject constructor(
         destination.value = data.searchParameters.destination.cityName.parseUnicode()
         isOneWay.value = data.searchParameters.isOneWay
         passengerCount.value = data.searchParameters.passengerCount
-        _priceHistory.value = data.priceHistory
-        _departureDate.value = data.searchParameters.departureDate
-        departureDate.toDate(DateStrategy.FORMAT2)?.let { processList(data, it) }
+        priceHistory.value = data.priceHistory
+        departureDate.value = data.searchParameters.departureDate
+        departureDate.value?.toDate(DateStrategy.FORMAT2)?.let { processList(data, it) }
     }
 
     private fun processList(data: FlightSearch,filterDate: Date) {

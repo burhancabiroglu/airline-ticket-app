@@ -58,12 +58,7 @@ class FlightTabItem private constructor(
     }
 
     companion object {
-        fun create(
-            context: Context,
-            parent: ViewGroup,
-            tabLayout: TabLayout,
-            data: FlightTabData,
-            listener: OnFlightTabClickListener? = null
+        fun create(context: Context, parent: ViewGroup, tabLayout: TabLayout, data: FlightTabData, listener: OnFlightTabClickListener? = null
         ): FlightTabItem = FlightTabItem(context, parent, tabLayout, data,listener)
 
     }

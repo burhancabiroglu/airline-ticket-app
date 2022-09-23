@@ -8,12 +8,8 @@ import com.cabir.airlineticketapp.components.tabitem.FlightTabItem
 import com.cabir.airlineticketapp.core.base.BaseFragment
 import com.cabir.airlineticketapp.core.base.VMState
 import com.cabir.airlineticketapp.databinding.FragmentFlightsListBinding
-import com.cabir.airlineticketapp.util.extension.DateStrategy
-import com.cabir.airlineticketapp.util.extension.formatDate
-import com.cabir.airlineticketapp.util.extension.toDate
-import com.cabir.airlineticketapp.util.extension.toNumberFormat
+import com.cabir.airlineticketapp.util.extension.*
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsListBinding>() {
@@ -29,7 +25,9 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
             is FlightsListVMState.OnDataReady -> {
                 val parent = view as ViewGroup
                 val tabLayout = binding.flightsTabLayout
-                val prices = viewModel.priceHistory!!.departure
+                val prices = viewModel.priceHistory.value!!.departure
+                val formattedDate = viewModel.departureDate.value!!.formatDate()
+                val departureDate = viewModel.departureDate.value!!.toDate(DateStrategy.FORMAT2)!!
                 viewModel.tabs.add(
                     FlightTabItem.create(
                         requireContext(),
@@ -38,12 +36,7 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                         FlightTabData(
                             getString(R.string.prev_day),
                             prices.previousDayPrice.toNumberFormat(),
-                            viewModel.departureDate.toDate(DateStrategy.FORMAT2)!!.let {
-                                val c = Calendar.getInstance()
-                                c.time = it
-                                c.add(Calendar.DATE, -1)
-                                c.time
-                            },
+                            departureDate.sumDay(-1)
                         )
                     ) {
                         viewModel.state.value = FlightsListVMState.OnDateChange(it)
@@ -55,9 +48,8 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                         parent,
                         tabLayout,
                         FlightTabData(
-                            viewModel.departureDate.formatDate(),
-                            prices.previousDayPrice.toNumberFormat(),
-                            viewModel.departureDate.toDate(DateStrategy.FORMAT2)!!,
+                            formattedDate, prices.previousDayPrice.toNumberFormat(),
+                            departureDate,
                             true
                         ),
                     ) {
@@ -72,12 +64,7 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                         FlightTabData(
                             getString(R.string.next_day),
                             prices.nextDayPrice.toNumberFormat(),
-                            viewModel.departureDate.toDate(DateStrategy.FORMAT2)!!.let {
-                                val c = Calendar.getInstance()
-                                c.time = it
-                                c.add(Calendar.DATE, 1)
-                                c.time
-                            },
+                            departureDate.sumDay(1)
                         )
                     ) {
                         viewModel.state.value = FlightsListVMState.OnDateChange(it)
@@ -85,7 +72,6 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                 )
             }
             is FlightsListVMState.OnDateChange -> viewModel.updateFilters(state.date)
-
         }
     }
 }

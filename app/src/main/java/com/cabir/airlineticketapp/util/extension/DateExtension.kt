@@ -20,6 +20,13 @@ fun String.toDate(strategy: DateStrategy = DateStrategy.FORMAT1): Date? {
     return parser.parse(this)
 }
 
+fun Date.sumDay(day: Int): Date {
+    val c = Calendar.getInstance()
+    c.time = this
+    c.add(Calendar.DATE, day)
+    return c.time
+}
+
 enum class DateStrategy(val format: String) {
     FORMAT1( "dd.MM.yyyy"),
     FORMAT2( "yyyy-MM-dd"),
