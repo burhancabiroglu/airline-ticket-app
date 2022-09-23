@@ -42,3 +42,9 @@ fun String.formatDate(): String {
     date?.let { return formatter.format(it) }
     return ""
 }
+
+fun String.toDate(format: String = "dd.MM.yyyy"): Date? {
+    val locale = Locale.forLanguageTag("tr-TR")
+    val parser = SimpleDateFormat(format, locale)
+    return parser.parse(this)
+}

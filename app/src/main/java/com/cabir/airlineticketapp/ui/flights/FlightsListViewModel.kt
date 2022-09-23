@@ -13,6 +13,7 @@ import com.cabir.airlineticketapp.ui.adapter.FlightItem
 import com.cabir.airlineticketapp.ui.adapter.FlightsRecyclerViewAdapter
 import com.cabir.airlineticketapp.util.extension.parseUnicode
 import com.cabir.airlineticketapp.util.extension.toCurrencyFormat
+import com.cabir.airlineticketapp.util.extension.toDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,6 +40,7 @@ class FlightsListViewModel @Inject constructor(
 
     val tabs = ArrayList<FlightTabItem>()
 
+
     fun getData() {
         viewModelScope.launch {
             when(val result = appRepo.search()) {
@@ -52,14 +54,18 @@ class FlightsListViewModel @Inject constructor(
             }
         }
     }
-    fun processData(data: FlightSearch) {
+
+
+    private fun processData(data: FlightSearch) {
         origin.value = data.searchParameters.origin.cityName.parseUnicode()
         destination.value = data.searchParameters.destination.cityName.parseUnicode()
         isOneWay.value = data.searchParameters.isOneWay
         passengerCount.value = data.searchParameters.passengerCount
         _priceHistory.value = data.priceHistory
         _departureDate.value = data.searchParameters.departureDate
-        val list = data.flights.departure.map { flight ->
+        val list = data.flights.departure.filter {
+            it.segments[0].departureDatetime.date.toDate() == departureDate.toDate("yyyy-MM-dd")
+        }.map { flight ->
             val baggage = flight.infos.baggageInfo.firstBaggageCollection!=null
             val allowance = if(baggage) flight.infos.baggageInfo.firstBaggageCollection?.get(0)?.allowance else 0
             FlightItem(
@@ -74,7 +80,6 @@ class FlightsListViewModel @Inject constructor(
                 baggage = flight.infos.baggageInfo.firstBaggageCollection!=null,
                 baggageAllowance = allowance?:0,
                 isDirect = flight.differentAirlineCount==1
-
             )
         }
         adapter.updateData(list)
