@@ -27,3 +27,10 @@ fun Int.toNumberFormat(): String {
     val formatted = formatter.format(parsed)
     return formatted.replace(",",".")
 }
+
+
+fun Double.toCurrencyFormat(locale: Locale = Locale.forLanguageTag("tr-TR")): String {
+    val formatter = NumberFormat.getCurrencyInstance(locale)
+    val formatted = formatter.format(this)
+    return formatted.removeRange(0,1)
+}

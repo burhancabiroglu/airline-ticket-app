@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class BaggageInfo(
-    val carryOn: CarryOn,
-    val firstBaggageCollection: ArrayList<BaggageItem>
+    val carryOn: CarryOn?,
+    val firstBaggageCollection: ArrayList<BaggageItem>?
 ): Parcelable

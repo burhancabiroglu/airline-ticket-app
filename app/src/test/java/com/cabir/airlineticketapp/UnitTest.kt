@@ -7,8 +7,13 @@ import org.junit.Assert.*
 
 class UnitTest {
     @Test
+    fun unicodeSingleParser_isCorrect() {
+        assertEquals("Türk" ,"T\\u00fcrk".parseUnicode())
+    }
+
+    @Test
     fun unicodeParser_isCorrect() {
-        val unicodeString =  "\\u0130stanbul"
-        assertEquals("İstanbul" ,unicodeString.parseUnicode())
+        val unicodeString =  "T\\u00fcrk Hava Yollar\\u0131"
+        assertEquals("Türk Hava Yolları" ,unicodeString.parseUnicode())
     }
 }

@@ -1,29 +1,38 @@
 package com.cabir.airlineticketapp.util.extension
 
+import androidx.lifecycle.MutableLiveData
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 fun String.parseUnicode(): String {
-    val arr = split("\\u")
-    if(arr.isEmpty() || arr.count() < 2) return this
-    val str = arr[1]
-    var unicode = ""
-    var startPoint: Int? = null
-    var endPoint: Int? = null
-    str.forEachIndexed { index, c ->
-        if(c.isDigit()) {
-            if(unicode.isEmpty()) startPoint = index
-            else endPoint = index+1
-            unicode = unicode.plus(c.toString())
+    val pattern = "\\u"
+    val unicodeLen = 6
+    val len = length - unicodeLen
+    var cleanString = this
+    val list = ArrayList<Pair<String,String>>()
+    for (i in 0..len) {
+        var buff = true
+        pattern.forEachIndexed { index, c ->
+            buff = buff.and((this[i+index] == c))
         }
+        if(buff) list.add(Pair(substring(i,i+unicodeLen), Char(Integer.parseInt(substring(i,i+unicodeLen).removeRange(0,2),16)).toString()))
     }
-    val c = Char(Integer.parseInt(unicode,16))
-    var cleanString = str
-    if(startPoint!=null && endPoint!= null)
-        cleanString = c.toString()+str.removeRange(startPoint!!, endPoint!!)
+    println(list)
+
+    list.forEach {
+        cleanString = cleanString.replace(it.first,it.second)
+    }
+
     return cleanString
 }
+
+fun MutableLiveData<String>.parseUnicode(): MutableLiveData<String> {
+    return MutableLiveData(value?.parseUnicode())
+}
+
+
 
 fun String.formatDate(): String {
     val locale = Locale.forLanguageTag("tr-TR")

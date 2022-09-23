@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <import type="com.cabir.airlineticketapp.util.extension.StringExtensionKt"/>
+        <variable
+            name="item"
+            type="com.cabir.airlineticketapp.ui.adapter.FlightItem" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +41,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="@dimen/width_25dp"
+                        app:imageUrl="@{item.operatingAirline.image}"
+                        android:layout_width="22dp"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/app_name"
@@ -46,6 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/padding_8dp"
+                        android:text="@{item.operatingAirline.name}"
                         tools:text="Türk Hava Yolları" />
                 </LinearLayout>
 
@@ -63,6 +72,7 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{item.origin}"
                             style="@style/Medium.14.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -76,6 +86,7 @@
                             android:src="@drawable/ic_arrow_next" />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:text="@{item.destination}"
                             style="@style/Medium.14.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,9 +106,10 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/Bold.14.Nandor"
+                            style="@style/Bold.16.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{item.departureTime}"
                             tools:text="12:30" />
 
                         <ImageView
@@ -105,13 +117,14 @@
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="@dimen/margin_5dp"
                             android:adjustViewBounds="true"
-                            android:paddingVertical="@dimen/padding_1dp"
+                            android:paddingVertical="@dimen/padding_3dp"
                             android:src="@drawable/ic_arrow_right" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/Medium.14.Nandor"
+                            style="@style/Medium.16.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{item.arrivalTime}"
                             tools:text="15:20" />
 
                     </LinearLayout>

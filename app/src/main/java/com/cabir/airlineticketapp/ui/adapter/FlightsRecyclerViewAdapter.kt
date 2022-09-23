@@ -6,13 +6,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.cabir.airlineticketapp.R
 import com.cabir.airlineticketapp.databinding.ItemFlightInfoBinding
+import com.cabir.airlineticketapp.util.extension.parseUnicode
 
-class FlightsRecyclerViewAdapter(private val items: Collection<Any>) :
+class FlightsRecyclerViewAdapter(private var list: Collection<FlightItem>) :
     RecyclerView.Adapter<FlightsRecyclerViewAdapter.FlightsViewHolder>() {
 
     inner class FlightsViewHolder(private val binding: ItemFlightInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Any) {}
+        fun bind(item: FlightItem) {
+            item.marketingAirline.name = item.marketingAirline.name.parseUnicode()
+            item.operatingAirline.name = item.operatingAirline.name.parseUnicode()
+            binding.item = item
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FlightsViewHolder {
@@ -27,8 +32,13 @@ class FlightsRecyclerViewAdapter(private val items: Collection<Any>) :
     }
 
     override fun onBindViewHolder(holder: FlightsViewHolder, position: Int) {
-        holder.bind(items.elementAt(position))
+        holder.bind(list.elementAt(position))
     }
 
-    override fun getItemCount(): Int = items.count()
+    override fun getItemCount(): Int = list.count()
+
+    fun updateData(collection: Collection<FlightItem>){
+        list = collection
+        notifyItemRangeChanged(0,collection.count())
+    }
 }

@@ -2,6 +2,7 @@ package com.cabir.airlineticketapp.data.model.departure
 
 import android.os.Parcelable
 import com.cabir.airlineticketapp.data.model.info.Info
+import com.cabir.airlineticketapp.data.model.segment.Segment
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
@@ -13,4 +14,5 @@ data class Departure(
     @SerializedName("average_price_breakdown")
     val averagePriceBreakdown: PriceBreakdown,
     val infos: Info,
+    val segments: ArrayList<Segment>
 ) : Parcelable
