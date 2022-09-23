@@ -212,7 +212,7 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:text="@{item.direct?@string/directFlight: @string/nonDirectFlight}"
-                        style="@style/Medium.16.Emerald"
+                        style="@style/Medium.14.Emerald"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/margin_10dp"
@@ -244,7 +244,7 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/luggageTextView"
-                            style="@style/Medium.12.Nandor"
+                            style="@style/Medium.13.Nandor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/padding_8dp"

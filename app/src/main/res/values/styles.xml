@@ -85,6 +85,10 @@
         <item name="android:textColor">@color/nandor</item>
     </style>
 
+    <style name="Medium.14.Emerald">
+        <item name="android:textColor">@color/emerald</item>
+    </style>
+
     <style name="Medium.15.Nandor">
         <item name="android:textColor">@color/nandor</item>
     </style>
