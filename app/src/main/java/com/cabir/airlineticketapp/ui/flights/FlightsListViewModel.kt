@@ -5,17 +5,18 @@ import androidx.lifecycle.viewModelScope
 import com.cabir.airlineticketapp.components.tabitem.FlightTabItem
 import com.cabir.airlineticketapp.core.base.BaseViewModel
 import com.cabir.airlineticketapp.core.base.ISuccess
-import com.cabir.airlineticketapp.data.model.departure.Departure
 import com.cabir.airlineticketapp.data.model.flightsearch.FlightSearch
 import com.cabir.airlineticketapp.data.model.price.PriceHistory
 import com.cabir.airlineticketapp.data.repo.ApiRepo
 import com.cabir.airlineticketapp.ui.adapter.FlightItem
 import com.cabir.airlineticketapp.ui.adapter.FlightsRecyclerViewAdapter
+import com.cabir.airlineticketapp.util.extension.DateStrategy
 import com.cabir.airlineticketapp.util.extension.parseUnicode
 import com.cabir.airlineticketapp.util.extension.toCurrencyFormat
 import com.cabir.airlineticketapp.util.extension.toDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,6 +41,9 @@ class FlightsListViewModel @Inject constructor(
 
     val tabs = ArrayList<FlightTabItem>()
 
+    val filterDate = MutableLiveData<Date>()
+
+    val cachedResponse = MutableLiveData<FlightSearch>()
 
     fun getData() {
         viewModelScope.launch {
@@ -47,6 +51,7 @@ class FlightsListViewModel @Inject constructor(
                 is ISuccess -> {
                     result.data?.data?.let {
                         processData(it)
+                        cachedResponse.value = it
                         state.value = FlightsListVMState.OnDataReady()
                     }
                 }
@@ -63,8 +68,13 @@ class FlightsListViewModel @Inject constructor(
         passengerCount.value = data.searchParameters.passengerCount
         _priceHistory.value = data.priceHistory
         _departureDate.value = data.searchParameters.departureDate
+        processList(data)
+    }
+
+    private fun processList(data: FlightSearch) {
+        filterDate.value = departureDate.toDate(DateStrategy.FORMAT2)
         val list = data.flights.departure.filter {
-            it.segments[0].departureDatetime.date.toDate() == departureDate.toDate("yyyy-MM-dd")
+            it.segments[0].departureDatetime.date.toDate() == filterDate.value
         }.map { flight ->
             val baggage = flight.infos.baggageInfo.firstBaggageCollection!=null
             val allowance = if(baggage) flight.infos.baggageInfo.firstBaggageCollection?.get(0)?.allowance else 0
@@ -83,5 +93,8 @@ class FlightsListViewModel @Inject constructor(
             )
         }
         adapter.updateData(list)
+    }
+    fun updateFilters() {
+        cachedResponse.value?.let { processList(it) }
     }
 }

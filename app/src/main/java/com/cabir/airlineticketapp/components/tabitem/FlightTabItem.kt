@@ -18,8 +18,8 @@ class FlightTabItem private constructor(
     private val context: Context,
     private val parent: ViewGroup,
     private val tabLayout: TabLayout,
-    private val labels: Pair<String,String>,
-    private val isToday:Boolean = false
+    val data: FlightTabData,
+    private val listener: OnFlightTabClickListener? = null
 ) : RecyclerView.ViewHolder(
     LayoutInflater.from(context).inflate(R.layout.fragment_flight_tab_item, parent, false)
 ), OnTabSelectedListener {
@@ -32,14 +32,14 @@ class FlightTabItem private constructor(
     init {
         tab.customView = itemView
         tabLayout.addTab(tab)
-        dayTextView.text = labels.first
+        dayTextView.text = data.label
         if (tab.isSelected) selected()
-        if(isToday) {
+        if(data.isToday) {
             dateImageView.visibility = View.VISIBLE
             tab.select()
             selected()
         }
-        amountTextView.text = labels.second.plus(" TL")
+        amountTextView.text = data.price.plus(" TL")
         tabLayout.addOnTabSelectedListener(this)
     }
 
@@ -62,13 +62,18 @@ class FlightTabItem private constructor(
             context: Context,
             parent: ViewGroup,
             tabLayout: TabLayout,
-            labels: Pair<String,String>,
-            isToday:Boolean = false
-        ): FlightTabItem = FlightTabItem(context, parent, tabLayout, labels,isToday)
+            data: FlightTabData,
+            listener: OnFlightTabClickListener? = null
+        ): FlightTabItem = FlightTabItem(context, parent, tabLayout, data,listener)
 
     }
 
-    override fun onTabSelected(tab: Tab?) = if(tab?.position == this.tab.position) selected() else Unit
+    override fun onTabSelected(tab: Tab?) {
+        if(tab?.position == this.tab.position) {
+            selected()
+            listener?.onTabClick(this.data.date)
+        }
+    }
     override fun onTabUnselected(tab: Tab?) = unselected()
     override fun onTabReselected(tab: Tab?) {}
 }

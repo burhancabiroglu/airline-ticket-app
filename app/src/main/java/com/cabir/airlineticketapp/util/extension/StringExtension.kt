@@ -1,8 +1,6 @@
 package com.cabir.airlineticketapp.util.extension
 
 import androidx.lifecycle.MutableLiveData
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -19,8 +17,6 @@ fun String.parseUnicode(): String {
         }
         if(buff) list.add(Pair(substring(i,i+unicodeLen), Char(Integer.parseInt(substring(i,i+unicodeLen).removeRange(0,2),16)).toString()))
     }
-    println(list)
-
     list.forEach {
         cleanString = cleanString.replace(it.first,it.second)
     }
@@ -30,21 +26,4 @@ fun String.parseUnicode(): String {
 
 fun MutableLiveData<String>.parseUnicode(): MutableLiveData<String> {
     return MutableLiveData(value?.parseUnicode())
-}
-
-
-
-fun String.formatDate(): String {
-    val locale = Locale.forLanguageTag("tr-TR")
-    val parser = SimpleDateFormat("yyyy-MM-dd", locale)
-    val formatter = SimpleDateFormat("dd MMM EE", locale)
-    val date = parser.parse(this)
-    date?.let { return formatter.format(it) }
-    return ""
-}
-
-fun String.toDate(format: String = "dd.MM.yyyy"): Date? {
-    val locale = Locale.forLanguageTag("tr-TR")
-    val parser = SimpleDateFormat(format, locale)
-    return parser.parse(this)
 }
