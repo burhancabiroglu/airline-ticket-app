@@ -24,7 +24,6 @@ fun Double.toNumberFormat(): String {
 fun Int.toNumberFormat(): String {
     val formatter = NumberFormat.getNumberInstance()
     val parsed = formatter.parse(this.toString())
-    return formatter.format(parsed).apply {
-        replace(",",".")
-    }
+    val formatted = formatter.format(parsed)
+    return formatted.replace(",",".")
 }
