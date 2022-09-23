@@ -34,7 +34,11 @@ class FlightTabItem private constructor(
         tabLayout.addTab(tab)
         dayTextView.text = labels.first
         if (tab.isSelected) selected()
-        if(isToday) dateImageView.visibility = View.VISIBLE
+        if(isToday) {
+            dateImageView.visibility = View.VISIBLE
+            tab.select()
+            selected()
+        }
         amountTextView.text = labels.second.plus(" TL")
         tabLayout.addOnTabSelectedListener(this)
     }

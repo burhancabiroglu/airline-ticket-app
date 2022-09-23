@@ -27,11 +27,16 @@ class FlightsListFragment: BaseFragment<FlightsListViewModel,FragmentFlightsList
                 val tl = binding.flightsTabLayout
                 val ph = viewModel.priceHistory?.departure
                 context?.let {
-                    FlightTabItem.create(it,vg,tl, Pair(getString(R.string.prev_day),ph?.previousDayPrice!!.toNumberFormat()))
-                    FlightTabItem.create(it,vg,tl, Pair(viewModel.departureDate.formatDate(), ph.previousDayPrice.toNumberFormat()), true)
-                    FlightTabItem.create(it,vg,tl, Pair(getString(R.string.next_day),ph.nextDayPrice.toNumberFormat()))
+                    viewModel.tabs.add(
+                        FlightTabItem.create(it,vg,tl, Pair(getString(R.string.prev_day),ph?.previousDayPrice!!.toNumberFormat()))
+                    )
+                    viewModel.tabs.add(
+                        FlightTabItem.create(it,vg,tl, Pair(viewModel.departureDate.formatDate(), ph.previousDayPrice.toNumberFormat()), true)
+                    )
+                    viewModel.tabs.add(
+                        FlightTabItem.create(it,vg,tl, Pair(getString(R.string.next_day),ph.nextDayPrice.toNumberFormat()))
+                    )
                 }
-
             }
         }
     }
