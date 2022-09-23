@@ -1,6 +1,5 @@
 package com.cabir.airlineticketapp.util.extension
 
-import androidx.lifecycle.MutableLiveData
 import kotlin.collections.ArrayList
 
 
@@ -20,10 +19,5 @@ fun String.parseUnicode(): String {
     list.forEach {
         cleanString = cleanString.replace(it.first,it.second)
     }
-
     return cleanString
-}
-
-fun MutableLiveData<String>.parseUnicode(): MutableLiveData<String> {
-    return MutableLiveData(value?.parseUnicode())
 }

@@ -1,6 +1,5 @@
 package com.cabir.airlineticketapp.ui.flights
 
-import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.cabir.airlineticketapp.R
@@ -47,8 +46,6 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                             },
                         )
                     ) {
-                            Log.e("TAG", "onChangedScreenState: $it", )
-                        viewModel.filterDate.value = it
                         viewModel.state.value = FlightsListVMState.OnDateChange(it)
                     }
                 )
@@ -64,9 +61,6 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                             true
                         ),
                     ) {
-                        Log.e("TAG", "onChangedScreenState: $it", )
-
-                        viewModel.filterDate.value = it
                         viewModel.state.value = FlightsListVMState.OnDateChange(it)
                     }
                 )
@@ -86,14 +80,12 @@ class FlightsListFragment : BaseFragment<FlightsListViewModel, FragmentFlightsLi
                             },
                         )
                     ) {
-                        Log.e("TAG", "onChangedScreenState: $it", )
-
-                        viewModel.filterDate.value = it
                         viewModel.state.value = FlightsListVMState.OnDateChange(it)
                     }
                 )
             }
-            is FlightsListVMState.OnDateChange -> viewModel.updateFilters()
+            is FlightsListVMState.OnDateChange -> viewModel.updateFilters(state.date)
+
         }
     }
 }

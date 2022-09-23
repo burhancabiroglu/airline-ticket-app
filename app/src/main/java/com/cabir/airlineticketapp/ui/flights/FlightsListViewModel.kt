@@ -24,6 +24,7 @@ class FlightsListViewModel @Inject constructor(
     private val appRepo: ApiRepo
 ) : BaseViewModel() {
 
+    private val cachedResponse = MutableLiveData<FlightSearch>()
     val origin = MutableLiveData<String>()
     val destination = MutableLiveData<String>()
     val isOneWay = MutableLiveData<Boolean>()
@@ -40,10 +41,6 @@ class FlightsListViewModel @Inject constructor(
         get() = _departureDate.value.toString()
 
     val tabs = ArrayList<FlightTabItem>()
-
-    val filterDate = MutableLiveData<Date>()
-
-    val cachedResponse = MutableLiveData<FlightSearch>()
 
     fun getData() {
         viewModelScope.launch {
@@ -68,13 +65,12 @@ class FlightsListViewModel @Inject constructor(
         passengerCount.value = data.searchParameters.passengerCount
         _priceHistory.value = data.priceHistory
         _departureDate.value = data.searchParameters.departureDate
-        processList(data)
+        departureDate.toDate(DateStrategy.FORMAT2)?.let { processList(data, it) }
     }
 
-    private fun processList(data: FlightSearch) {
-        filterDate.value = departureDate.toDate(DateStrategy.FORMAT2)
+    private fun processList(data: FlightSearch,filterDate: Date) {
         val list = data.flights.departure.filter {
-            it.segments[0].departureDatetime.date.toDate() == filterDate.value
+            it.segments[0].departureDatetime.date.toDate()?.equals(filterDate)?:false
         }.map { flight ->
             val baggage = flight.infos.baggageInfo.firstBaggageCollection!=null
             val allowance = if(baggage) flight.infos.baggageInfo.firstBaggageCollection?.get(0)?.allowance else 0
@@ -94,7 +90,7 @@ class FlightsListViewModel @Inject constructor(
         }
         adapter.updateData(list)
     }
-    fun updateFilters() {
-        cachedResponse.value?.let { processList(it) }
+    fun updateFilters(filterDate: Date) {
+        cachedResponse.value?.let { processList(it,filterDate) }
     }
 }

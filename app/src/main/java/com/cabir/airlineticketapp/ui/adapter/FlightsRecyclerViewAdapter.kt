@@ -1,5 +1,6 @@
 package com.cabir.airlineticketapp.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -45,8 +46,9 @@ class FlightsRecyclerViewAdapter(private var list: Collection<FlightItem>) :
 
     override fun getItemCount(): Int = list.count()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(collection: Collection<FlightItem>){
         list = collection
-        notifyItemRangeChanged(0,collection.count())
+        notifyDataSetChanged()
     }
 }
