@@ -1,7 +1,3 @@
-
-
-<p>
-</p>
 <p align="center">
  <img src="art/logo-anim.gif" width="40%">
 </p>
@@ -38,4 +34,35 @@
 
 </ul>
 
+
+## Our Components & Logics
+
+
+<b><code>FlightTabItem</code>: </b>It is a simple component that makes it easy to create and manage the children of the android tablayout component. <br>
+
+```kotlin
+class FlightTabItem private constructor(
+    private val context: Context,
+    private val parent: ViewGroup,
+    private val tabLayout: TabLayout,
+    val data: FlightTabData,
+    private val listener: OnFlightTabClickListener? 
+)
+```
+just Create. that is all!
+```kotlin
+ FlightTabItem.create(context,parent,tabLayout,tabData){
+      ...
+  }
+```
+## Unit Tests
+
+<li>
+<code>Unicode Parser</code>: A method that captures unicode characters in a text or string and returns their char equivalent. test has been written.
+</li>
+<br>
+
+## Screen Recording
+<br>
+<img src="art/app.gif" width="40%">
 
